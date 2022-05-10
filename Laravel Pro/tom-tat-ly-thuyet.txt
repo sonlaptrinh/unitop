@@ -261,6 +261,17 @@ Database: Query Builder
 	-Update
 	Xóa
 	
+BÀI 8.4: KHÔI PHỤC LẠI CÁC BƯỚC TƯƠNG TÁC XỬ LÝ DATABASE - ROLLBACK
+	php artisan migrate:rollback --step=5
+	php artisan migrate:rollback
+	
+BÀI 8.5: RESET, REFRESH MIGRATION
+
+	php artisan migrate:reset
+	php artisan migrate:refresh
+
+BÀI 8.6: THÊM MỘT CỘT DỮ LIỆU VÀO BẢNG ĐÃ CÓ
+	
 ELOQUENT ORM DATABASE
 
 BÀI 10.2: 2 CÁCH TẠO MODEL
