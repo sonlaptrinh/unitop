@@ -1,0 +1,254 @@
+BÀI 2.1: TỔNG QUAN LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG
+
+	-Hiểu cách phát triển 1 lớp cho 1 loại đối tượng nào đấy
+	-Có tính kế thừa do vậy tiết kiệm được thời gian xây dựng đối tượng mới
+	-Gồm thuộc tính và phương thức xử lý
+	VD1: Hình chữ nhật
+	Thuộc tính: Chiều dài, chiều rộng
+	Phương thức: Tính chu vi, Tính diện tích
+	VD2: DB
+	Thuộc tính: Tên bảng, tên trường
+	Phương thức: Select dữ liệu, insert dữ liệu, update dữ liệu
+	-------------------------------------------------------------------
+BÀI 2.2: QUY TẮC ĐỊNH NGHĨA CLASS - VÍ DỤ ĐẦU TIÊN
+
+	<?php
+
+	class class_name{
+
+	//Thuộc tính
+	public $attribute_1;
+	public $attribute_1;
+
+	//Phương thức
+	public function method_1(){
+	//code xử lý method_1
+	}
+	public function method_k(){
+	//code xử lý method_k
+	}
+	?>
+
+	class_name:Tên của lớp định nghĩa đối tượng
+	attribute: Các thuộc tính của đối tượng
+	method: Các phương thức xử lý trong đối tượng
+	
+BÀI 2.3: TẠO ĐỐI TƯỢNG MỚI VÀ CÁCH TRUY CẬP THUỘC TÍNH, PHƯƠNG THỨC
+	<?php
+	$a = new Rectangle();
+	$a -> height = 5;
+	$a -> width = 4;
+	echo $a -> getPerimeter();
+	echo $a -> getArea();
+	?>
+	
+	-Sử dụng toán tử new để khởi tạo 1 đối tượng thuộc lớp cho trước.
+	-Sử dụng toán tử -> để truy xuất, cập nhật giá trị thuộc tính và kích hoạt các phương thức ở nhóm.
+	(Đúng với thuộc tính và phương thức có tầm vực public)
+
+BÀI 2.4: PHƯƠNG THỨC KHỞI TẠO __CONSTRUCTOR
+
+	<?php
+	class Rectangle
+	{
+	//Khai báo thuộc tính
+	public $height;
+	public $width;
+	public function __constructor(){
+	$this -> width = 125;
+	$this -> height = 10;
+	}
+	$a = new Rectangle();
+	?>
+	-Ngay khi khởi tạo đối tượng thì lớp Rectangle tự động thực thi phương thức khởi tạo (construct).
+	Tiến hành thiết lập width, height cho đối tượng.
+	-Đây là cách để thực thi những xử lý co thể chạy ngay từ đầu.
+	
+BÀI 2.5: TÍNH STATIC CỦA THUỘC TÍNH VÀ PHƯƠNG THỨC CỦA CLASS
+
+	<?class Rectangle
+	{
+	//Khai báo thuộc tính
+	public static $height = 15;
+	public static $ width = 20;
+	//Phương thức tính chu vi
+	public static function getPerimeter(){
+	return ( 2*(self::$height + self::$width);
+	}
+	echo Rectangle::$height = 20;
+	ehco Rectangle::getArea();
+	Tính static giúp chúng ta có thể truy xuất các thuộc tính phương thức trong 1 lớp mà không cần phải khởi tạo đối tượng.
+	Cách truy xuất được thiết lập thông qua toán tử self::attribute
+	Để gọi 1 phương thức chỉ cần:
+	echo Rectangle::getPerimeter;
+	echo Rectangle::getArea;
+	
+BÀI 2.6: CÁCH ĐỊNH NGHĨA LỚP KẾ THỪA
+	
+	<?php
+	class A
+	{
+	
+		public $attribute_1;
+		//..
+		
+		function method_1()
+		{
+		//..
+		echo "ok";
+		}
+	}
+	
+	class B extends A
+	{
+	.................
+	}
+	$b = new B;
+	echo $b -> method_1;
+	<?
+	Lớp kế thừa giúp chúng ta tạo một lớp mới và thừa hưởng các thuộc tính một lớp đã tồn tại trước đó.
+	Bằng cách này giúp kế thừa những tài nguyên đã tồn tại và có thể sử dụng lại
+	Chỉ kế thừa những phương thức, thuộc tính có tầm vực public và proteched ( không bao gồm private )
+	
+BÀI 2.7: PHƯƠNG THỨC SET VÀ GET TRONG CLASS ( THIẾT LẬP VÀ LẤY GIÁ TRỊ CỦA THUỘC TÍNH )
+	<?php
+	clas Demo{
+	
+	private $attribute_1;
+
+	
+	public function setValue($value){
+	$this -> attribute_1 = $value;
+	
+	public function getValue(){
+	return $this -> attribute_1;
+	}
+	$a = new Demo;
+	$a -> setValue(20);
+	echo $a -> getValue();
+	}
+	?>
+	-Set: Phương thức chuyên thiết lập giá trị cho thuộc tính được thiết lập tầm vực private .
+	-Get: Phương thức chuyên lấy dữ liệu của 1 thuộc tính cho thuộc tính được thiết lập tầm vực private.
+	}
+	
+BÀI 2.8: TẦM VỰC PUBLIC, PRIVATE, PROTECTED TÍNH CHẤT VÀ CÁCH SỬ DỤNG
+	
+	PUBLIC: Ảnh hưởng bất kỳ chỗ nào
+	PRIVATE: Chỉ ảnh hưởng bên trong lớp khai báo
+	PROTECTED: Ảnh hưởng trong lớp cha và các lớp kế thừa nó
+	
+
+BÀI 2.9: BÀI TẬP XÂY DỰNG CLASS USER
+
+BÀI 3.1: TỔNG QUAN YÊU CẦU CLASS DB
+
+	-insert: Thên bản ghi vào trong DB
+	-get: Lấy dữ liệu từ tỏng DB ( lấy 1 mảng hoặc 1 bản ghi )
+	-pdate: Cập nhật dữ liệu
+	-delete: Xóa banr ghi trong DB
+	
+
+BÀI 3.2: TẠO DATABASE PHPMYADMIN VÀ CẤU HÌNH KẾT NỐI CƠ SỞ DỮ LIỆU
+
+	<?php
+	define('DB_HOST','localhost');
+	define('DB_USER','root');
+	define('DB_PASS','');
+	define('DB_NAME','laravelpro');
+	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	if ($db->connect_error){
+		die("Kết nối không thành công:".$db->connect_error);
+	}
+	echo "đã kết nối cơ sở dữ liệu";
+	
+BÀI 3.6: TẠO PHƯƠNG THỨC CHUẨN HÓA CHUỖI TRUY VẤN
+	
+	
+BÀI 4.4: BỎ PUBLIC TRÊN URL LARAVEL
+	B1: Đổi server.php => index.php
+	B2: .htaccess đưa ra bên ngoài root
+	Nằm bên trong public
+
+BÀI 5.1: ĐỊNH NGHĨA MỘT ROUTE CƠ BẢN
+BÀI 5.2: ĐỊNH NGHĨA ROUTE CÓ THAM SỐ
+	Route::get('post/{id}', function ($id) {
+    return "$id";
+	});
+	Với cách viết điều hướng có thể thực thi ở những chức năng có liên quan đến dữ liệu có thể thay đổi có nhiều bản ghi
+	Muốn xem chi tiết, danh sách xem thông tin 1 phần nào đấy qua tham số id của 1 phần tử nào đấy.
+
+BÀI 5.3: ĐẶT TÊN CHO ROUTE
+	-Đặt tên để làm cho router ngắn hơn
+	-Router::get('/admin/product/add', function(){
+	return router('product.add');
+	
+	-Nếu cần dùng đến cái đường dẫn http://localhost/unitop/Laravel%20Pro/blog/users/profile chỉ cần truyền tên vào là xong
+	Route::get('users/profile', function(){
+    return route('profile');
+
+	}) ->name('profile');
+	
+BÀI 5.4: ĐỊNH TUYẾN THAM SỐ THEO TÙY CHỌN YES - NO
+
+	Route::get('users/{id?}', function ($id = 0) {
+    return "$id";
+});
+
+BÀI 5.6: ĐỊNH TUYẾN ĐẾN MỘT VIEW
+	Route::view('welcome','welcome');
+	Route::view('post','welcome', ['id' => 20 ]); truyền id qua view
+	Xuất giá trị {{id}}
+
+
+BÀI 5.7: ĐỊNH TUYẾN ĐẾN MỘT CONTROLLER
+	// Tạo 1 controller
+	Route::get('post/{id}','PotsController@detail');
+	
+BÀI 5.8: BÀI TẬP ROUTING
+
+BÀI 6.1: TỔNG QUAN NHỮNG TÁC VỤ TRONG CONTROLLER
+	-Tạo 1 controller
+	-Gọi controller từ route
+	-Gọi controller có tham số từ Ulr
+	-Gọi view trong controller
+	-Gửi dữ liệu sang view từ controller
+	-Làm việc với Model
+	
+BÀI 6.4: GỌI VIEW TRONG CONTROLLER
+
+	 public function show($id){
+       return view ('welcome');
+		
+    }
+	
+
+BÀI 6.5: GỬI VÀ XUẤT DỮ LIỆU QUA VIEW
+
+BÀI 6.6: TẠO CONTROLLER KIỂU RESOURCE
+
+	php artisan make:controller ArticleController --resource
+	php artisan route:list
+	Khi tạo controller sẽ tạo action quan trọng đi kèm
+	
+	index : Hiển thị trang , dấu chỉ
+	create: Tạo mới
+	store: Lưu trữ
+	show : Hiển thị 
+	edit: Sửa
+	update: Cập nhật
+	destroy : Xóa
+
+BÀI 6.7: CHUYỂN HƯỚNG TRONG CONTROLLER
+	
+	return redirect('post'); chuyển sang trang post
+	return redirect()-> route(
+	
+Database: Query Builder
+
+	-Thêm dữ liệu vào db
+	-Lấy danh sách ( cả thông tin luôn ) bản ghi ở trong db 
+	-Lấy được 1 bản ghi trong db ( thông tin 1 bản ghi )
+	-Lấy được 1 bản ghi trong db ( thông tin 1 bản ghi ) theo id
+	-Đếm số lượng bản ghi trong bảng ( đếm xem có bao nhiêu bài viết do user(id ) tạo ra )
+	-

@@ -1,0 +1,218 @@
+Bài 2.1: Tổng quan lập trình hướng đối tượng
+Đối tượng : Hình chữ nhật
+Thuộc tính : chiều dài,chiều rộng
+Phương thức : chu vi diện tích
+Tính kế thừa
+Tính trìu tượng
+Tính đóng gói
+Tính đa hình
+
+<?php
+class class_name{
+public $attribute_1;
+public $attribute_1;
+public function method_1(){
+//code xử lý method_1
+}
+public function method_k(){
+////code xử lý method_k
+}
+}
+?>
+class: tên của lớp định nghĩa đối tượng
+attribute : các thuộc tính của đối tượng
+method: phương thức xử lý trong đối tượng
+có rất nhiều hình chữ nhật khác nhau nhưng chúng có chung những thuộc tính ( chiều dài, chiều rộng , chu vi diện tích)
+class nó là 1 bản thiết kế hình chữ nhật cụ thể
+public là tầm vực của biến ! 
+
+1.Cài https://getcomposer.org/
+2.Cài https://www.apachefriends.org/download.html
++https://nodejs.org/en/download/
+3.Vào thư mục cần tạo dự án chạy lệnh
+4.composer create-project --prefer-dist laravel/laravel:^7.0 blog
+5.Mở file dự án
+6.artisan
++ php artisan serve ( chạy app ) 
+http://127.0.0.1:8000/
+7.route -> web.php
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('posts/{id}', function ($id) {
+    return $id;
+});
+
+
+8.composer require laravel/ui:^2.4
+9.php artisan ui bootstrap --auth
+10.Tạo 1 database trong http://localhost/phpmyadmin/
+11.Kết nối bằng cách chỉnh sửa trong fil .env
+12.php artisan config:cache
+13.Migration nằm trong thư mục database(migration)
++ Các file php để tạo bảng, sửa,.. trong co sở dữ liệu
++có 2 phần up và down 
+up chạy khi thao tác với cơ sở dữ liệu
+down chạy khi rollback
+14. php artisan migrate ( sau khi có migrate thì chạy để thêm vào database )
+15. php artisan migrate:rollback
+16.php php artisan make:migration create_users_table --create=users
+17.Controller
+php artisan make:controller ArticleController ( tạo controller mới )
+php artisan make:controller ArticleController --resource
+
+resources controller --> tạo các hàm có sẵn
+18.View nằm trong resources
+19.Model nằm trong app
+20.php artisan make:model Model/Article
+php artisan make:controller Teacher/TeacherController
+
+21.Liên kết model với migration
++Eloquent model --> model được lien kết với migration --> liên kết với database
++artisan make:model Model/Article -m ( chạy lệnh này sẽ được 1 model và có luôn migration )
++fillable : chỉ định các file sẽ được lưu xuống database
+Tạo model sinh ra migration sau đó chạy lệnh để lưu bảng vào database đã được kết nối
+Sau khi lưu bảng thì sử dụng controller để lưu bài viết xuống database
+22. php artisan route:list
+<?php
+
+
+namespace App\Http\Controllers;
+
+
+use App\Model\Teacher;
+
+class TeacherController extends Controller
+{
+public function index(){
+    return view('addTeacher');
+}
+    public function addTeacher(){
+    $input = request() -> all();
+
+    $teacher_no = isset($input['teacher_no']) ? $input['teacher_no'] : null;
+    $teacher_name = isset($input['teacher_name']) ? $input['teacher_name'] : null;
+    $username = isset($input['username']) ? $input['username'] : null;
+    $password = isset($input['password']) ? $input['password'] : null;
+    $data = [
+        'teacher_no' => $teacher_no,
+        'teacher_name' => $teacher_name,
+         'username' => $username,
+         'password' => $password
+    ];
+
+        try {
+            $Teacher = new Teacher();
+            $Teacher ->fill($data)->save();
+
+        } catch (\Exception $e){
+            echo 'fail';
+            dd($e);
+        }
+        echo "kết nối ok";
+    }
+}
+---------------------------------------------------
+<?php
+
+namespace App\Model;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Teacher extends Model
+{
+    protected $table = 'teacher';
+
+    protected $fillable = [
+        'teacher_no',
+        'teacher_name',
+        'username',
+        'password'
+
+    ];
+}
+
+INDEX
+ b1: Router
+ gọi controlll từ route
+ gọi view từ cơntroleer
+php artisan make:controller ControllerName --resource
+php artisan route:list
+Route::resource('post','PostController');
+Route::resource('posts', \App\Http\Controllers\PostController::class);
+
+Học sinh
+Tạo bảng giáo viên
+--------------------------------------------------------------------------
+
+echo "# lifesoft" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote rm origin
+git remote add origin https://github.com/sonlaptrinh/lifesoft.git
+git push -u origin main
+git clone https://github.com/sonlaptrinh/lifesoft.git
+tạo file .env
+chạy lệnh 
+php artisan key:generate
+php artisan migrate
+composer i
+
+
+git remote add origin https://github.com/sonlaptrinh/lifesoft.git
+git branch -M main
+git push -u origin main
+
+
+
+
+
+-------------------------------------------------
+echo "# lifesoft" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote rm origin
+git remote add origin https://github.com/sonlaptrinh/lifesoft.git
+git push -u origin main
+
+
+
+
+
+git remote add origin https://github.com/sonlaptrinh/lifesoft.git
+git branch -M main
+git push -u origin main
+---------------------------------------------------
+clone code về xong chạy 1 số lệnh
+tạo 1 DB sau đó chạy lệnh để kết nối DB
+php artisan config:cache
+php artisan serve
+php artisan migrate chạy lệnh để tạo bảng cho db
+php artisan optimize
+php artisan key:generate
+php artisan migrate
+composer i
+php artisan db:seed
+
+
+--------------------------------------------------
+clone về sửa xong push lại bằng 4 lệnh
+git init
+git add .
+git commit -m "update"
+git push
+---------------------------------------------------
+Bài 10.3: Lấy tất cả bản ghi trên Route
+php artisan migrate:refresh
+php artisan make:migration create_teacher_table --create=teachers
+
+1.Khi bấm vào tra cứu thì hiện lên toàn bộ danh sách học sinh
