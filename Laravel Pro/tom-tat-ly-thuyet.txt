@@ -246,9 +246,48 @@ BÀI 6.7: CHUYỂN HƯỚNG TRONG CONTROLLER
 	
 Database: Query Builder
 
-	-Thêm dữ liệu vào db
-	-Lấy danh sách ( cả thông tin luôn ) bản ghi ở trong db 
-	-Lấy được 1 bản ghi trong db ( thông tin 1 bản ghi )
-	-Lấy được 1 bản ghi trong db ( thông tin 1 bản ghi ) theo id
+	-Thêm dữ liệu vào db ( route và controller)
+	-Lấy danh sách ( cả thông tin luôn ) bản ghi ở trong db ( controller )
+	-Lấy được 1 bản ghi trong db ( thông tin 1 bản ghi ) 
+	-Lấy được 1 bản ghi trong db ( thông tin 1 bản ghi ) theo id ( 
 	-Đếm số lượng bản ghi trong bảng ( đếm xem có bao nhiêu bài viết do user(id ) tạo ra )
+	-Tính Min, Max, Trung bình của 1 cột dữ liệu nào đó
+	-Lấy dữ kiệu nhưng đan xen giữa các bảng 
+	-Lấy dữ liệu theo điều kiện lớn hơn , nhỏ hơn , bằng
+	-Lấy dữ liệu điều kiện phức ( 2 điều kiện )
+	-Group by lấy dữ liệu theo nhóm
+	-Sắp xếp tăng dần hoặc giảm dần
+	-Limit, offset lấy số bản ghi theo giới hạn ( 2 cái đầu 2 cái cuối, vị trí nhất định )
+	-Update
+	Xóa
+	
+ELOQUENT ORM DATABASE
+
+BÀI 10.2: 2 CÁCH TẠO MODEL
+
+	Có thể lấy trên router khác so với Query Builder chỉ lấy trên controller
+
+BÀI 10.3: LẤY TẤT CẢ BẢN GHI TRÊN ROUTE
+
+
+
+
+BÀI 10.4: LẤY TẤT CẢ BẢN GHI TRÊN CONTROLLER
+	Đã có db chỉ lấy ra bản ghi
+	$post = DB::all();
+
+BÀI 10.5: LẤY DANH SÁCH BẢN GHI THEO ĐIỀU KIỆN ( GIỐNG VỚI QUERY BUILDER )
+	
+	-Đã có db lấy ra tất cả ( nhiều bản ghi ) bản ghi nhưng theo 1 điều kiện nào đó ( VD: id = 14, có title = iphone )
+	$posts = Post::where('title', 'like', '%iphone')->get();
+	return $posts;
 	-
+BÀI 10.14: THÊM DỮ LIỆU VÀO BẢNG QUA PHƯƠNG THỨC CREATE()
+	$posts = Post::where('user_id, 17) ->first();
+	
+	
+BÀI 23.4: TẠO VÀ CHẠY MIDDLEWARE ĐẦU TIÊN
+Tạo view
+Tạo route -> middleware
+Tạo middleware ( tạo rằng buộc )-> khai báo trong kernel
+
