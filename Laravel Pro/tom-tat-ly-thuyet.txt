@@ -242,7 +242,7 @@ BÀI 6.6: TẠO CONTROLLER KIỂU RESOURCE
 BÀI 6.7: CHUYỂN HƯỚNG TRONG CONTROLLER
 	
 	return redirect('post'); chuyển sang trang post
-	return redirect()-> route(
+	return redirect()
 	
 Database: Query Builder
 
@@ -260,6 +260,37 @@ Database: Query Builder
 	-Limit, offset lấy số bản ghi theo giới hạn ( 2 cái đầu 2 cái cuối, vị trí nhất định )
 	-Update
 	Xóa
+BÀI 7.5: ĐỊNH NGHĨA MỘT LAYOUT BOOTSTRAP
+		<!doctype html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Document - @yield('title')</title>
+	</head>
+	<body>
+	@section('sidebar')
+		This is the master sidebal
+	@show
+	</body>
+	</html>
+
+	{{--@yield('title'): gọi section title--}}
+	{{--@section('sidebal')...@show: Định nghĩa 1 phần nội dung có tên sidebar--}}
+	{{--@yield('content'): gọi section content--}}
+	
+BÀI 7.7: HIỆN THỊ DỮ LIỆU TRÊN BLADE TEMPLATE
+
+	{{$data}} --> Hiển thị dạng bình thường
+	{{!!$data}} --> Hiển thị dạng đã có dạng html
+	
+BÀI 7.8: CẤU TRÚC ĐIỀU KHIỂN TRÊN BLADE TEMPLATE
+	@if
+	.....
+	@endif
+	
 	
 BÀI 8.4: KHÔI PHỤC LẠI CÁC BƯỚC TƯƠNG TÁC XỬ LÝ DATABASE - ROLLBACK
 	php artisan migrate:rollback --step=5
@@ -272,6 +303,32 @@ BÀI 8.5: RESET, REFRESH MIGRATION
 
 BÀI 8.6: THÊM MỘT CỘT DỮ LIỆU VÀO BẢNG ĐÃ CÓ
 	
+	php artisan make:migrate add_gender_to_pays_table --table=pays
+	
+BÀI 8.7: CÁCH KHAI BÁO CÁC TRƯỜNG DỮ LIỆU DATABASE
+
+	$table->id(); | Tương tương $table->bigIncremments('id')
+	$table->foreignId('user_isd') | Tương đương với $table->unsigneBigIntteger('user_id')
+	$table->bigIncremments('id'); | Trường tự động tăng UNSIGNED BIGINT, được thiết lập khóa chính
+	$table->increments('id') | Trường tự động tăng UNSIGNED INT , được thiết lập khóa chính
+	$table->string('name',100) | Thiết lập trường với kiểu dữ liệu VARCHAR với độ dài xác định
+	$table->text('description')| Tạo dữ liệu kiểu text để chứa chi tiết nội dung số lượng kí tự lớp
+	$table->json(''options) | Trường kiểu dữ liệu kiểu json {"k1":"value","k2":"10"}
+	$table->timestamps(0)| Tạo 2 trường create_at và update_at
+	$table->enum('level',['easy','hard'])| Tạo trường gồm tập hợp giá trị cho trước
+	$table->char('name',100)| Trường lưu chuỗi ngắn
+	$table->boolean('confirmed')| Lưu dữ liệu có 2 giá trị true, false
+	$table->float('amount',8,2)| Lưu dữ liệu foat
+	$table->integer('votes')| Lưu dữ liệu int
+	$table->dataTime('create_at',0)| Lưu dữ liệu thời gian
+	$table->text('content') -> nullable(); cho phép null
+
+
+BÀI 8.8: CẬP NHẬT THÊM TRƯỜNG CHO DATABASE
+
+	
+
+	
 ELOQUENT ORM DATABASE
 
 BÀI 10.2: 2 CÁCH TẠO MODEL
@@ -279,6 +336,7 @@ BÀI 10.2: 2 CÁCH TẠO MODEL
 	Có thể lấy trên router khác so với Query Builder chỉ lấy trên controller
 
 BÀI 10.3: LẤY TẤT CẢ BẢN GHI TRÊN ROUTE
+	
 
 
 
@@ -288,17 +346,17 @@ BÀI 10.4: LẤY TẤT CẢ BẢN GHI TRÊN CONTROLLER
 	$post = DB::all();
 
 BÀI 10.5: LẤY DANH SÁCH BẢN GHI THEO ĐIỀU KIỆN ( GIỐNG VỚI QUERY BUILDER )
-	
+
 	-Đã có db lấy ra tất cả ( nhiều bản ghi ) bản ghi nhưng theo 1 điều kiện nào đó ( VD: id = 14, có title = iphone )
 	$posts = Post::where('title', 'like', '%iphone')->get();
 	return $posts;
-	-
+	
 BÀI 10.14: THÊM DỮ LIỆU VÀO BẢNG QUA PHƯƠNG THỨC CREATE()
 	$posts = Post::where('user_id, 17) ->first();
 	
 	
 BÀI 23.4: TẠO VÀ CHẠY MIDDLEWARE ĐẦU TIÊN
-Tạo view
-Tạo route -> middleware
-Tạo middleware ( tạo rằng buộc )-> khai báo trong kernel
+	Tạo view
+	Tạo route -> middleware
+	Tạo middleware ( tạo rằng buộc )-> khai báo trong kernel
 
