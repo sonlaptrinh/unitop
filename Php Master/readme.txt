@@ -10,6 +10,10 @@ BÀI 3.5: KINH NGHIỆM COMMENT CODE TRONG PHP
 	
 
 BÀI 4.1: BIẾN VÀ KINH NGHIỆM SỬ DỤNG BIẾN PHP
+	$phoneNumble = 10;
+	$fullName = "Phan Văn Sơn";
+
+BÀI 4.2: SỬ DỤNG HẰNG SỐ TRONG PHP
 	-cách đặt tên
 	<?php
 	define('MINSIZE', 50);
