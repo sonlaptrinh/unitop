@@ -1,0 +1,1 @@
+Trying to get property of non-object : Kiểm tra trong db

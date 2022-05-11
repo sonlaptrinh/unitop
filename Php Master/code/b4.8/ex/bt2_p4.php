@@ -1,0 +1,2 @@
+<?php
+$listProduct = array();

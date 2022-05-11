@@ -1,0 +1,33 @@
+body{
+    font-size: 20px;
+    font-family: Arial;
+    line-height: 23px;
+    color: tomato;
+}
+#wrapper{
+    width: 960px;
+    margin: 0px auto;
+}
+#header, #footer{
+    background: tomato;
+}
+ul#main-menu{
+    text-align: center ;
+}
+ul#main-menu li{
+    display: inline-block;
+}
+ul#main-menu li a{
+    display: block;
+    padding: 8px 15px;
+    color: white;
+}
+#content{
+    min-height: 800px;
+    padding: 20px 0px ;
+}
+#footer p{
+    color: white;
+    text-align: center;
+    padding: 8px 15px;
+}
