@@ -1,386 +1,205 @@
-BÀI 2.1: TỔNG QUAN LẬP TRÌNH HƯỚNG ĐỐI TƯỢNG
+BÀI 3.3: XUẤT DỮ LIỆU TRONG PHP
+	Xuất dữ liệu sau khi xử lý lên html - sử dụng câu lệnh echo() - xuất dữ liệu kiểu biến
+	Hiển thị dữ liệ mảng - sự dụng câu lệnh prinr_t() -> xuất dữ liệu kiể mảng
+	echo "$a";
+	echo "Xin chào các bạn ";
+	Khác nhau giữa dấu nháy đơn và dấu nháy kép
+	Dấu nháy đơn là chuỗi thuần, nếu trong chuỗi có biến thì không xuất nội dung của biến ra được
 
-	-Hiểu cách phát triển 1 lớp cho 1 loại đối tượng nào đấy
-	-Có tính kế thừa do vậy tiết kiệm được thời gian xây dựng đối tượng mới
-	-Gồm thuộc tính và phương thức xử lý
-	VD1: Hình chữ nhật
-	Thuộc tính: Chiều dài, chiều rộng
-	Phương thức: Tính chu vi, Tính diện tích
-	VD2: DB
-	Thuộc tính: Tên bảng, tên trường
-	Phương thức: Select dữ liệu, insert dữ liệu, update dữ liệu
-	-------------------------------------------------------------------
-BÀI 2.2: QUY TẮC ĐỊNH NGHĨA CLASS - VÍ DỤ ĐẦU TIÊN
+BÀI 3.5: KINH NGHIỆM COMMENT CODE TRONG PHP
+	//==============
+	//TIÊU ĐỀ KHỐI LỚN
+	//==============
+	
+	//==============
+	//Tiêu đề khối phụ
+	//==============
+	
+	
 
+BÀI 4.1: BIẾN VÀ KINH NGHIỆM SỬ DỤNG BIẾN PHP
+	$phoneNumble = 10;
+	$fullName = "Phan Văn Sơn";
+
+BÀI 4.2: SỬ DỤNG HẰNG SỐ TRONG PHP
+	-cách đặt tên
 	<?php
-
-	class class_name{
-
-	//Thuộc tính
-	public $attribute_1;
-	public $attribute_1;
-
-	//Phương thức
-	public function method_1(){
-	//code xử lý method_1
-	}
-	public function method_k(){
-	//code xử lý method_k
-	}
+	define('MINSIZE', 50);
+	echo MINSIZE;
 	?>
+BÀI 4.2: SỬ DỤNG HẰNG SỐ TRONG PHP
+	__LINE__      | Số dòng hiện tại khi gọi giá trị hằng  _LINE_
+	__FILE__     | Đường dẫn đến 1 file được gọi hằng
+	__DIR__       | Đường dẫn đến folder chứa file hiện hành
+	__CLASS__      | Lớp được gọi trong lập trình OOP
+	__METHOD__       | Phương thức được gọi trong lập trình OOP
+	__NAMESPACE__    | Tên NAMESPACE trong lập trình OOP
+	
+BÀI 4.3: DỮ LIỆU SỐ TRONG PHP
+	Kiểu dữ liệu của biến được quyết định bằng giá trị của nó lưu trữ
+	$age = 30;
+	
+BÀI 4.4: DỮ LIỆU CHUỖI TRONG PHP
 
-	class_name:Tên của lớp định nghĩa đối tượng
-	attribute: Các thuộc tính của đối tượng
-	method: Các phương thức xử lý trong đối tượng
+	$fullName = "Trần Quang Sơn"; -> nên dùng
+	$fullName = 'Trần Quang Sơn';
+	error = "";
 	
-BÀI 2.3: TẠO ĐỐI TƯỢNG MỚI VÀ CÁCH TRUY CẬP THUỘC TÍNH, PHƯƠNG THỨC
-	<?php
-	$a = new Rectangle();
-	$a -> height = 5;
-	$a -> width = 4;
-	echo $a -> getPerimeter();
-	echo $a -> getArea();
-	?>
-	
-	-Sử dụng toán tử new để khởi tạo 1 đối tượng thuộc lớp cho trước.
-	-Sử dụng toán tử -> để truy xuất, cập nhật giá trị thuộc tính và kích hoạt các phương thức ở nhóm.
-	(Đúng với thuộc tính và phương thức có tầm vực public)
+BÀI 4.5: DỮ LIỆU MẢNG TRONG PHP
 
-BÀI 2.4: PHƯƠNG THỨC KHỞI TẠO __CONSTRUCTOR
-
-	<?php
-	class Rectangle
-	{
-	//Khai báo thuộc tính
-	public $height;
-	public $width;
-	public function __constructor(){
-	$this -> width = 125;
-	$this -> height = 10;
-	}
-	$a = new Rectangle();
-	?>
-	-Ngay khi khởi tạo đối tượng thì lớp Rectangle tự động thực thi phương thức khởi tạo (construct).
-	Tiến hành thiết lập width, height cho đối tượng.
-	-Đây là cách để thực thi những xử lý co thể chạy ngay từ đầu.
+	Mảng 1 chiều:
+	$list_course = array(0,1,2,3,4);
+	$list_course = array(0=>0,1=>1,2=>2);
 	
-BÀI 2.5: TÍNH STATIC CỦA THUỘC TÍNH VÀ PHƯƠNG THỨC CỦA CLASS
-
-	<?class Rectangle
-	{
-	//Khai báo thuộc tính
-	public static $height = 15;
-	public static $ width = 20;
-	//Phương thức tính chu vi
-	public static function getPerimeter(){
-	return ( 2*(self::$height + self::$width);
-	}
-	echo Rectangle::$height = 20;
-	ehco Rectangle::getArea();
-	Tính static giúp chúng ta có thể truy xuất các thuộc tính phương thức trong 1 lớp mà không cần phải khởi tạo đối tượng.
-	Cách truy xuất được thiết lập thông qua toán tử self::attribute
-	Để gọi 1 phương thức chỉ cần:
-	echo Rectangle::getPerimeter;
-	echo Rectangle::getArea;
-	
-BÀI 2.6: CÁCH ĐỊNH NGHĨA LỚP KẾ THỪA
-	
-	<?php
-	class A
-	{
-	
-		public $attribute_1;
-		//..
+	Mảng nhiều chiều:
+	$list_user = array(
+		1=>array(
+			'id'=>1,
+			'fullName'=>'Trần Quang Sơn',
+			'age'=>'29'
 		
-		function method_1()
-		{
-		//..
-		echo "ok";
-		}
-	}
+		),
+		2=>array(
+			'id'=>2,
+			'fullName'=>'Nguyễn Xuân Nam',
+			'age'=>'30'
+		),
 	
-	class B extends A
-	{
-	.................
-	}
-	$b = new B;
-	echo $b -> method_1;
-	<?
-	Lớp kế thừa giúp chúng ta tạo một lớp mới và thừa hưởng các thuộc tính một lớp đã tồn tại trước đó.
-	Bằng cách này giúp kế thừa những tài nguyên đã tồn tại và có thể sử dụng lại
-	Chỉ kế thừa những phương thức, thuộc tính có tầm vực public và proteched ( không bao gồm private )
+	)
 	
-BÀI 2.7: PHƯƠNG THỨC SET VÀ GET TRONG CLASS ( THIẾT LẬP VÀ LẤY GIÁ TRỊ CỦA THUỘC TÍNH )
+BÀI 4.6: DỮ LIỆU BOOLEAN TRONG PHP
+	$check = true;
+	$result = false;
+	
+BÀI 4.7: NHỮNG BIẾN TOÀN CỤC QUAN TRỌNG TRONG PHP
+	$GLOBALS | Connect hoặc lấy dữ liệu của những biến khai báo bên trong biến $GLOBALS
+	$_SERVER | Lưu trữ thông tin về server
+	$_REQUEST | Lưu trữ thông tin request
+	$_POST | Thông tin của dữ liệu đẩy lên server theo post
+	$_GET | Thông tin của dữ liệu đẩy lên server theo get
+	$_FILES | Lưu trữ thông tin file khi upload file lên serve
+	$_ENV | 
+	$_COOKIE | Làm việc với thông tin lưu trữ trong cookie
+	$_SESSION |Làm việc với thông tin lưu trữ trong session
+	
+	echo <pre>;
+	prinr_t($_SERVER);
+	echo </pre>;
+
+BÀI 5.1: PHÉP TOÁN SỐ HỌC TRONG PHP
+	 -> trả ra kết quả
+	%  | $a%$b số dư
+	pow() | pow( cơ số , số mũ ) | mũ
+	/  VD: $a/$b -> thương
+	$a = 5;
+	$b =10;
+	echo $b%$a;
+	
+BÀI 5.2: PHÉP TOÁN GÁN TRONG PHP
+	
+	$x=$y  | $x=$y
+	$x+=$y  | $x = $x+$y
+	$x-=$y  | $x = $x-$y
+	$x*=$y  | $x = $x*$y
+	$x/=$y  | $x = $x/$y
+	$x%=$y  | $x = $x%$y
+
+BÀI 5.3: PHÉP TOÁN SO SÁNH TRONG PHP
+	==  | Bằng  | $x == $y
+	!=   | Khác  |  $x!=$y
+	<>   | Khác  |  $x<>$y
+	
+BÀI 5.4: PHÉP TOÁN LOGIC TRONG PHP
+	and  | $x and $y  -> True nếu cả $x và $y true
+	or    | $x or $y -> True nếu $x hoặc $y true
+	xor   | $x xor $y -> True nếu $x hoặc $y true mà không cả 2
+	
+BÀI 5.5: PHÉP TOÁN TRÊN CHUỖI TRONG P
+	Phép toán nối chuối str1.str2
+	Nối thêm chuỗi cho $st1.=$st2 ( sau khi nối thì $st1 sẽ thay đổi )
+
+BÀI 5.6: PHÉP TOÁN TĂNG GIẢM TRONG PHP
+	++$x | Tăng trước | Tăng 1 đơn vị vào $x trước khi thực hiện
+	$x++ | Tăng sau | Tăng 1 đơn vị vào $x sau khi thực hiện
+	--$x  | Giảm trước | Giảm 1 đơn vị vào $x trước khi thực hiện
+	$x-- | Giảm sau | Giảm 1 đơn vị vào $x sau khi thực hiện
+	
+	
+BÀI 6.1: CẤU TRÚC ĐIỀU KHIỂN IF
+BÀI 6.2: CẤU TRÚC ĐIỀU KHIỂN SWITCH
 	<?php
-	clas Demo{
-	
-	private $attribute_1;
-
-	
-	public function setValue($value){
-	$this -> attribute_1 = $value;
-	
-	public function getValue(){
-	return $this -> attribute_1;
+	$day = 5;
+	switch ($day) {
+    case 2:
+        echo "Hôm nay là thứ 2";
+        break;
+    case 3:
+        echo "Hôm nay là thứ ba";
+        break;
+    case 4:
+        echo "Hôm nay là thứ tư";
+        break;
+    case 5:
+        echo "Hôm nay là thứ năm";
+        break;
+    case 6:
+        echo "Hôm nay là thứ sáu";
+        break;
+    case 7:
+        echo "Hôm nay là thứ bảy";
+        break;
+    default:
+        echo "Hôm nay là chủ nhật";
+        break;
 	}
-	$a = new Demo;
-	$a -> setValue(20);
-	echo $a -> getValue();
-	}
-	?>
-	-Set: Phương thức chuyên thiết lập giá trị cho thuộc tính được thiết lập tầm vực private .
-	-Get: Phương thức chuyên lấy dữ liệu của 1 thuộc tính cho thuộc tính được thiết lập tầm vực private.
-	}
 	
-BÀI 2.8: TẦM VỰC PUBLIC, PRIVATE, PROTECTED TÍNH CHẤT VÀ CÁCH SỬ DỤNG
-	
-	PUBLIC: Ảnh hưởng bất kỳ chỗ nào
-	PRIVATE: Chỉ ảnh hưởng bên trong lớp khai báo
-	PROTECTED: Ảnh hưởng trong lớp cha và các lớp kế thừa nó
-	
+BÀI 7.1: CẤU TRÚC MẢNG TRONG PHP
+	VD1: $list_user = array('A','B','C');
+	VD2:$list_user = array('key1'=>'A','key2'=>'B','key3'=>'C');
+	VD3:$info = array(
+		'id'=>'1',
+		'fullname'=>'Nam',
+		'age'=>'18'
+		);
 
-BÀI 2.9: BÀI TẬP XÂY DỰNG CLASS USER
+BÀI 26.3: CẤU TRÚC THƯ MỤC VÀ CHỨC NĂNG CỦA MVC
+	module
+		--controller
+		--model
+		--view
+		lib: Thư viện các chức năng như database
+		helper: Những hàm hệ thống như string, url
+		public: chứa file giao diện như css, js
+		confic: cấu hình hệ thống
+		layout: giao diện dùng chung
+		index.php: File nhận yêu cầu người dùng
 
-BÀI 3.1: TỔNG QUAN YÊU CẦU CLASS DB
+BÀI 29.5: TỔNG QUAN DANH SÁCH MODULE HỆ THỐNg
 
-	-insert: Thên bản ghi vào trong DB
-	-get: Lấy dữ liệu từ tỏng DB ( lấy 1 mảng hoặc 1 bản ghi )
-	-pdate: Cập nhật dữ liệu
-	-delete: Xóa banr ghi trong DB
-	
-
-BÀI 3.2: TẠO DATABASE PHPMYADMIN VÀ CẤU HÌNH KẾT NỐI CƠ SỞ DỮ LIỆU
-
-	<?php
-	define('DB_HOST','localhost');
-	define('DB_USER','root');
-	define('DB_PASS','');
-	define('DB_NAME','laravelpro');
-	$db = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-	if ($db->connect_error){
-		die("Kết nối không thành công:".$db->connect_error);
-	}
-	echo "đã kết nối cơ sở dữ liệu";
-	
-BÀI 3.6: TẠO PHƯƠNG THỨC CHUẨN HÓA CHUỖI TRUY VẤN
-	
-	
-BÀI 4.4: BỎ PUBLIC TRÊN URL LARAVEL
-	B1: Đổi server.php => index.php
-	B2: .htaccess đưa ra bên ngoài root
-	Nằm bên trong public
-
-BÀI 5.1: ĐỊNH NGHĨA MỘT ROUTE CƠ BẢN
-BÀI 5.2: ĐỊNH NGHĨA ROUTE CÓ THAM SỐ
-	Route::get('post/{id}', function ($id) {
-    return "$id";
-	});
-	Với cách viết điều hướng có thể thực thi ở những chức năng có liên quan đến dữ liệu có thể thay đổi có nhiều bản ghi
-	Muốn xem chi tiết, danh sách xem thông tin 1 phần nào đấy qua tham số id của 1 phần tử nào đấy.
-
-BÀI 5.3: ĐẶT TÊN CHO ROUTE
-	-Đặt tên để làm cho router ngắn hơn
-	-Router::get('/admin/product/add', function(){
-	return router('product.add');
-	
-	-Nếu cần dùng đến cái đường dẫn http://localhost/unitop/Laravel%20Pro/blog/users/profile chỉ cần truyền tên vào là xong
-	Route::get('users/profile', function(){
-    return route('profile');
-
-	}) ->name('profile');
-	
-BÀI 5.4: ĐỊNH TUYẾN THAM SỐ THEO TÙY CHỌN YES - NO
-
-	Route::get('users/{id?}', function ($id = 0) {
-    return "$id";
-});
-
-BÀI 5.6: ĐỊNH TUYẾN ĐẾN MỘT VIEW
-	Route::view('welcome','welcome');
-	Route::view('post','welcome', ['id' => 20 ]); truyền id qua view
-	Xuất giá trị {{id}}
-
-
-BÀI 5.7: ĐỊNH TUYẾN ĐẾN MỘT CONTROLLER
-	// Tạo 1 controller
-	Route::get('post/{id}','PotsController@detail');
-	
-BÀI 5.8: BÀI TẬP ROUTING
-
-BÀI 6.1: TỔNG QUAN NHỮNG TÁC VỤ TRONG CONTROLLER
-	-Tạo 1 controller
-	-Gọi controller từ route
-	-Gọi controller có tham số từ Ulr
-	-Gọi view trong controller
-	-Gửi dữ liệu sang view từ controller
-	-Làm việc với Model
-	
-BÀI 6.4: GỌI VIEW TRONG CONTROLLER
-
-	 public function show($id){
-       return view ('welcome');
+	Admin
+		user
+		page
+		postmedia
+		sales
+		product
+		slider
+		template
+		ads
+		dashboard
 		
-    }
+	Client(người dùng )
+		home
+		page
+		post
+		product
+		cart
+		checkout
+
+Bài 29.6: 6 bước để xây dựng module hệ thống
+	1.Nghiên cứu thông tin cần lưu trữ
+	2.Tạo cơ sở dữ liệu
+	3.Thiết kế module - controller - action
+	4.Tạo 1 giao diện
+	5.Xử lý chức năng từng phần
+	6.Chạy thử nghiệm test tối ưu
 	
-
-BÀI 6.5: GỬI VÀ XUẤT DỮ LIỆU QUA VIEW
-
-BÀI 6.6: TẠO CONTROLLER KIỂU RESOURCE
-
-	php artisan make:controller ArticleController --resource
-	php artisan route:list
-	Khi tạo controller sẽ tạo action quan trọng đi kèm
-	
-	index : Hiển thị trang , dấu chỉ
-	create: Tạo mới
-	store: Lưu trữ
-	show : Hiển thị 
-	edit: Sửa
-	update: Cập nhật
-	destroy : Xóa
-
-BÀI 6.7: CHUYỂN HƯỚNG TRONG CONTROLLER
-	
-	return redirect('post'); chuyển sang trang post
-	return redirect()
-	
-Database: Query Builder
-
-	-Thêm dữ liệu vào db ( route và controller)
-	-Lấy danh sách ( cả thông tin luôn ) bản ghi ở trong db ( controller )
-	-Lấy được 1 bản ghi trong db ( thông tin 1 bản ghi ) 
-	-Lấy được 1 bản ghi trong db ( thông tin 1 bản ghi ) theo id ( 
-	-Đếm số lượng bản ghi trong bảng ( đếm xem có bao nhiêu bài viết do user(id ) tạo ra )
-	-Tính Min, Max, Trung bình của 1 cột dữ liệu nào đó
-	-Lấy dữ kiệu nhưng đan xen giữa các bảng 
-	-Lấy dữ liệu theo điều kiện lớn hơn , nhỏ hơn , bằng
-	-Lấy dữ liệu điều kiện phức ( 2 điều kiện )
-	-Group by lấy dữ liệu theo nhóm
-	-Sắp xếp tăng dần hoặc giảm dần
-	-Limit, offset lấy số bản ghi theo giới hạn ( 2 cái đầu 2 cái cuối, vị trí nhất định )
-	-Update
-	Xóa
-BÀI 7.5: ĐỊNH NGHĨA MỘT LAYOUT BOOTSTRAP
-		<!doctype html>
-	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport"
-			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Document - @yield('title')</title>
-	</head>
-	<body>
-	@section('sidebar')
-		This is the master sidebal
-	@show
-	</body>
-	</html>
-
-	{{--@yield('title'): gọi section title--}}
-	{{--@section('sidebal')...@show: Định nghĩa 1 phần nội dung có tên sidebar--}}
-	{{--@yield('content'): gọi section content--}}
-	
-BÀI 7.7: HIỆN THỊ DỮ LIỆU TRÊN BLADE TEMPLATE
-
-	{{$data}} --> Hiển thị dạng bình thường
-	{{!!$data}} --> Hiển thị dạng đã có dạng html
-	
-BÀI 7.8: CẤU TRÚC ĐIỀU KHIỂN TRÊN BLADE TEMPLATE
-	@if
-	.....
-	@endif
-	
-BÀI 8.3: CÚ PHÁP TẠO MIGRATION COMPOSER
-	php artisan make:migration create_products_table
-	
-	
-BÀI 8.4: KHÔI PHỤC LẠI CÁC BƯỚC TƯƠNG TÁC XỬ LÝ DATABASE - ROLLBACK
-	php artisan migrate:rollback --step=5
-	php artisan migrate:rollback
-	
-BÀI 8.5: RESET, REFRESH MIGRATION
-
-	php artisan migrate:reset
-	php artisan migrate:refresh
-
-BÀI 8.6: THÊM MỘT CỘT DỮ LIỆU VÀO BẢNG ĐÃ CÓ
-	
-	php artisan make:migrate add_gender_to_pays_table --table=pays
-	
-BÀI 8.7: CÁCH KHAI BÁO CÁC TRƯỜNG DỮ LIỆU DATABASE
-
-	$table->id(); | Tương tương $table->bigIncremments('id')
-	$table->foreignId('user_isd') | Tương đương với $table->unsigneBigIntteger('user_id')
-	$table->bigIncremments('id'); | Trường tự động tăng UNSIGNED BIGINT, được thiết lập khóa chính
-	$table->increments('id') | Trường tự động tăng UNSIGNED INT , được thiết lập khóa chính
-	$table->string('name',100) | Thiết lập trường với kiểu dữ liệu VARCHAR với độ dài xác định
-	$table->text('description')| Tạo dữ liệu kiểu text để chứa chi tiết nội dung số lượng kí tự lớp
-	$table->json(''options) | Trường kiểu dữ liệu kiểu json {"k1":"value","k2":"10"}
-	$table->timestamps(0)| Tạo 2 trường create_at và update_at
-	$table->enum('level',['easy','hard'])| Tạo trường gồm tập hợp giá trị cho trước
-	$table->char('name',100)| Trường lưu chuỗi ngắn
-	$table->boolean('confirmed')| Lưu dữ liệu có 2 giá trị true, false
-	$table->float('amount',8,2)| Lưu dữ liệu foat
-	$table->integer('votes')| Lưu dữ liệu int
-	$table->dataTime('create_at',0)| Lưu dữ liệu thời gian
-	$table->text('content') -> nullable(); cho phép null
-
-
-BÀI 8.8: CẬP NHẬT THÊM TRƯỜNG CHO DATABASE
-	->after('column') | Thêm trường mối đằng sau 1 cột cho trước
-	->autoIncrement() | Thiết lập INTERGER và tự động tăng ( khóa chính )
-	->nullable($value=true) | Khai báo cho phép cột có thể null
-	->unsigned() | Thiết lập 1 số nguyên không dấu
-	->useCurrent() | Lưu dữ liệu cho cột chính là mốc thời gian hiện tại
-	->default($value) | Thiết lập giá trị mặc định cho 1 trường.
-	
-BÀI 8.9: THIẾT LẬP KHÓA CHÍNH, KHÓA NGOẠI CHO DỮ LIỆU
-
-	$table->unsigneBigIntteger('user_id);
-	$table->foreign('user_id')->references('id')->on('users');
-	Chú ý : Quy tắc xóa dữ liệu bảng kết nối
-	$table->foreignId('user_id')
-	->constrained()
-	->onDelete('cascade');
-			$table->id();
-            $table->string('content');
-            $table->unsignedBigInteger('price');
-            $table->unsignedBigInteger('product_cat_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('product_cat_id')->references('id')->on('product_cats')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->timestamps();
-
-	
-ELOQUENT ORM DATABASE
-
-BÀI 10.2: 2 CÁCH TẠO MODEL
-
-	Có thể lấy trên router khác so với Query Builder chỉ lấy trên controller
-
-BÀI 10.3: LẤY TẤT CẢ BẢN GHI TRÊN ROUTE
-	
-
-
-
-
-BÀI 10.4: LẤY TẤT CẢ BẢN GHI TRÊN CONTROLLER
-	Đã có db chỉ lấy ra bản ghi
-	$post = DB::all();
-
-BÀI 10.5: LẤY DANH SÁCH BẢN GHI THEO ĐIỀU KIỆN ( GIỐNG VỚI QUERY BUILDER )
-
-	-Đã có db lấy ra tất cả ( nhiều bản ghi ) bản ghi nhưng theo 1 điều kiện nào đó ( VD: id = 14, có title = iphone )
-	$posts = Post::where('title', 'like', '%iphone')->get();
-	return $posts;
-	
-BÀI 10.14: THÊM DỮ LIỆU VÀO BẢNG QUA PHƯƠNG THỨC CREATE()
-	$posts = Post::where('user_id, 17) ->first();
-	
-	
-BÀI 23.4: TẠO VÀ CHẠY MIDDLEWARE ĐẦU TIÊN
-	Tạo view
-	Tạo route -> middleware
-	Tạo middleware ( tạo rằng buộc )-> khai báo trong kernel
-
